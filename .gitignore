@@ -1,0 +1,42 @@
+# Archivo de configuración del entorno
+env.php
+
+# Archivos temporales y de cache
+*.tmp
+*.cache
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Archivos de backup
+*.bak
+*.backup
+
+# Archivos generados por IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Archivos de node_modules (si se usa npm)
+node_modules/
+
+# Archivos de composer (si se usa composer)
+vendor/
+composer.lock
+
+# Archivos de configuración locales
+config/local.php
+.env.local
+.env.production
+
+# Archivos de uploads
+uploads/
+temp/
+
+# Archivos de sesiones
+sessions/
