@@ -1,0 +1,354 @@
+/* ==========================================================================
+   Error Page Styles
+   ========================================================================== */
+
+/* Container principal */
+.container {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+    padding: var(--SPACING_LG);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow-x: hidden;
+}
+
+.container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><rect width="100" height="100" fill="rgba(0,0,0,0.03)"/><circle cx="25" cy="25" r="1" fill="rgba(231, 76, 60, 0.03)"/><circle cx="75" cy="75" r="1" fill="rgba(231, 76, 60, 0.03)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+    pointer-events: none;
+}
+
+/* Contenedor de error */
+.error-container {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    border-radius: var(--BORDER_RADIUS_LG);
+    box-shadow:
+        0 25px 50px rgba(0, 0, 0, 0.2),
+        0 0 0 1px rgba(255, 255, 255, 0.1);
+    padding: var(--SPACING_XL);
+    width: 100%;
+    max-width: 600px;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+    transform: translateY(0);
+    transition: var(--TRANSITION_MEDIUM);
+    animation: fadeInUp 0.8s ease-out;
+}
+
+.error-container:hover {
+    transform: translateY(-5px);
+    box-shadow:
+        0 35px 70px rgba(0, 0, 0, 0.25),
+        0 0 0 1px rgba(255, 255, 255, 0.15);
+}
+
+/* Cinta de error */
+.error-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 6px;
+    background: linear-gradient(90deg, var(--COLOR_ACENTO_ALERTA), #c0392b);
+    border-radius: var(--BORDER_RADIUS_LG) var(--BORDER_RADIUS_LG) 0 0;
+}
+
+/* Icono de error */
+.error-icon {
+    font-size: 5rem;
+    color: var(--COLOR_ACENTO_ALERTA);
+    margin-bottom: var(--SPACING_LG);
+    animation: errorShake 0.8s ease-out;
+}
+
+/* Código de error */
+.error-code {
+    font-size: 4rem;
+    font-weight: var(--FONT_WEIGHT_BOLD);
+    color: var(--COLOR_ACENTO_ALERTA);
+    margin: 0 0 var(--SPACING_MD) 0;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    opacity: 0.8;
+}
+
+/* Título del error */
+.error-title {
+    font-size: 2rem;
+    font-weight: var(--FONT_WEIGHT_BOLD);
+    color: var(--COLOR_FONDO_PRINCIPAL);
+    margin: 0 0 var(--SPACING_MD) 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Mensaje de error */
+.error-message {
+    font-size: 1.2rem;
+    color: var(--COLOR_GRIS_MEDIO);
+    line-height: 1.6;
+    margin: 0 0 var(--SPACING_XL) 0;
+}
+
+/* Detalles del error */
+.error-details {
+    background: rgba(231, 76, 60, 0.05);
+    border: 1px solid rgba(231, 76, 60, 0.2);
+    border-radius: var(--BORDER_RADIUS_MD);
+    padding: var(--SPACING_MD);
+    margin: var(--SPACING_LG) 0;
+    text-align: left;
+}
+
+.error-details h4 {
+    color: var(--COLOR_ACENTO_ALERTA);
+    margin: 0 0 var(--SPACING_SM) 0;
+    font-size: 1rem;
+    font-weight: var(--FONT_WEIGHT_BOLD);
+    display: flex;
+    align-items: center;
+    gap: var(--SPACING_SM);
+}
+
+.error-details h4::before {
+    content: '🔍';
+}
+
+.error-details p {
+    color: var(--COLOR_GRIS_MEDIO);
+    margin: 0 0 var(--SPACING_SM) 0;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.error-details p:last-child {
+    margin-bottom: 0;
+}
+
+/* Acciones sugeridas */
+.suggestions {
+    margin-top: var(--SPACING_XL);
+    text-align: left;
+}
+
+.suggestions h4 {
+    color: var(--COLOR_FONDO_PRINCIPAL);
+    margin: 0 0 var(--SPACING_MD) 0;
+    font-size: 1.1rem;
+    font-weight: var(--FONT_WEIGHT_BOLD);
+    display: flex;
+    align-items: center;
+    gap: var(--SPACING_SM);
+}
+
+.suggestions h4::before {
+    content: '💡';
+}
+
+.suggestions ul {
+    margin: 0;
+    padding-left: 20px;
+}
+
+.suggestions li {
+    color: var(--COLOR_GRIS_MEDIO);
+    font-size: 0.95rem;
+    margin-bottom: var(--SPACING_SM);
+    line-height: 1.5;
+}
+
+.suggestions li:last-child {
+    margin-bottom: 0;
+}
+
+/* Botones de acción */
+.error-actions {
+    display: flex;
+    gap: var(--SPACING_MD);
+    margin-top: var(--SPACING_XL);
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.btn-form {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--SPACING_SM);
+    padding: var(--SPACING_MD) var(--SPACING_XL);
+    border-radius: var(--BORDER_RADIUS_MD);
+    font-weight: var(--FONT_WEIGHT_BOLD);
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: var(--TRANSITION_MEDIUM);
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--COLOR_BORDE_INPUT_FOCUS), #0056b3);
+    color: var(--COLOR_BLANCO);
+    box-shadow: 0 10px 25px rgba(0, 123, 255, 0.3);
+}
+
+.btn-primary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.6s;
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 35px rgba(0, 123, 255, 0.4);
+}
+
+.btn-primary:hover::before {
+    left: 100%;
+}
+
+.btn-secondary {
+    background: linear-gradient(135deg, var(--COLOR_GRIS_MEDIO), #495057);
+    color: var(--COLOR_BLANCO);
+    box-shadow: 0 10px 25px rgba(108, 117, 125, 0.3);
+}
+
+.btn-secondary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 35px rgba(108, 117, 125, 0.4);
+}
+
+.btn-form:active {
+    transform: translateY(-1px);
+}
+
+/* Footer de soporte */
+.support-footer {
+    margin-top: var(--SPACING_XL);
+    padding-top: var(--SPACING_LG);
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.support-footer p {
+    color: var(--COLOR_GRIS_MEDIO);
+    margin: 0 0 var(--SPACING_SM) 0;
+    font-size: 0.9rem;
+}
+
+.support-footer a {
+    color: var(--COLOR_BORDE_INPUT_FOCUS);
+    text-decoration: none;
+    font-weight: var(--FONT_WEIGHT_BOLD);
+    transition: var(--TRANSITION_MEDIUM);
+}
+
+.support-footer a:hover {
+    color: var(--COLOR_FONDO_PRINCIPAL);
+    text-decoration: underline;
+}
+
+/* Animaciones */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes errorShake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-10px); }
+    20%, 40%, 60%, 80% { transform: translateX(10px); }
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .container {
+        padding: var(--SPACING_MD);
+    }
+
+    .error-container {
+        padding: var(--SPACING_LG);
+        margin: var(--SPACING_MD);
+    }
+
+    .error-code {
+        font-size: 3rem;
+    }
+
+    .error-title {
+        font-size: 1.5rem;
+    }
+
+    .error-message {
+        font-size: 1.1rem;
+    }
+
+    .error-actions {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .btn-form {
+        width: 100%;
+        justify-content: center;
+        max-width: 300px;
+    }
+}
+
+@media (max-width: 480px) {
+    .error-container {
+        padding: var(--SPACING_MD);
+    }
+
+    .error-icon {
+        font-size: 4rem;
+    }
+
+    .error-code {
+        font-size: 2.5rem;
+    }
+
+    .error-title {
+        font-size: 1.3rem;
+    }
+
+    .error-message {
+        font-size: 1rem;
+    }
+
+    .error-details,
+    .suggestions {
+        font-size: 0.85rem;
+    }
+
+    .support-footer {
+        font-size: 0.85rem;
+    }
+}

@@ -1,0 +1,520 @@
+/* =============================================
+   PANEL CSS - Estilos inspirados en el diseño del detalle
+   ============================================= */
+
+/* Contenedor principal */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--SPACING_LG);
+    font-family: var(--FONT_FAMILY);
+}
+
+/* Enlace de volver */
+.link-back {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--SPACING_XS);
+    color: var(--COLOR_ACENTO_CLIMA);
+    text-decoration: none;
+    font-weight: var(--FONT_WEIGHT_BOLD);
+    margin-bottom: var(--SPACING_LG);
+    padding: var(--SPACING_SM) var(--SPACING_MD);
+    border-radius: var(--BORDER_RADIUS_MD);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    font-size: 1rem;
+    position: relative;
+    overflow: hidden;
+    background: rgba(52, 152, 219, 0.05);
+    border: 2px solid transparent;
+}
+
+.link-back::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(52, 152, 219, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.link-back:hover::before {
+    left: 100%;
+}
+
+.link-back:hover {
+    transform: translateX(-5px);
+    background: rgba(52, 152, 219, 0.1);
+    border-color: var(--COLOR_ACENTO_CLIMA);
+    box-shadow: 0 4px 15px rgba(52, 152, 219, 0.2);
+}
+
+/* Estados de carga */
+.loading,
+.error-message {
+    text-align: center;
+    padding: var(--SPACING_XL);
+    margin: var(--SPACING_XL) 0;
+    border-radius: var(--BORDER_RADIUS_LG);
+    font-size: 1.2rem;
+    animation: fadeIn 0.5s ease;
+    position: relative;
+    z-index: 1;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.loading {
+    background: linear-gradient(135deg, rgba(52, 152, 219, 0.1), rgba(52, 152, 219, 0.05));
+    color: var(--COLOR_ACENTO_CLIMA);
+    border: 2px solid rgba(52, 152, 219, 0.2);
+}
+
+.loading::before {
+    content: '🌡️';
+    font-size: 3rem;
+    display: block;
+    margin-bottom: var(--SPACING_MD);
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+.error-message {
+    background: linear-gradient(135deg, rgba(231, 76, 60, 0.1), rgba(231, 76, 60, 0.05));
+    color: var(--COLOR_ACENTO_ALERTA);
+    border: 2px solid rgba(231, 76, 60, 0.2);
+}
+
+.error-message::before {
+    content: '❌';
+    font-size: 3rem;
+    display: block;
+    margin-bottom: var(--SPACING_MD);
+    animation: shake 0.5s ease;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-10px); }
+    75% { transform: translateX(10px); }
+}
+
+/* Grid de estaciones */
+.stations-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: var(--SPACING_XL);
+    margin-bottom: var(--SPACING_XL);
+    position: relative;
+    z-index: 1;
+}
+
+/* Tarjeta de estación - Estilo similar a detalle */
+.station-card {
+    background: var(--COLOR_BLANCO);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    transition: all 0.4s ease;
+    position: relative;
+    backdrop-filter: blur(10px);
+    cursor: pointer;
+    animation: fadeInUp 0.8s ease-out;
+}
+
+.station-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--COLOR_ACENTO_CLIMA), var(--COLOR_ACENTO_SECUNDARIO), var(--COLOR_ACENTO_ALERTA));
+}
+
+.station-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+}
+
+/* Estaciones inactivas */
+.station-card--inactive {
+    opacity: 0.8;
+    transform: scale(0.98);
+}
+
+.station-card--inactive::before {
+    background: linear-gradient(90deg, var(--COLOR_ACENTO_ALERTA), #f39c12);
+}
+
+/* Header de la estación - Estilo similar a detalle */
+.station-header {
+    background: linear-gradient(135deg, var(--COLOR_ACENTO_CLIMA), #5dade2);
+    color: var(--COLOR_BLANCO);
+    padding: var(--SPACING_LG);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.station-header::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+    animation: float 20s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: rotate(0deg) translate(-50%, -50%); }
+    50% { transform: rotate(180deg) translate(-30%, -30%); }
+}
+
+.station-nickname {
+    font-size: 1.8rem;
+    font-weight: var(--FONT_WEIGHT_BOLD);
+    margin-bottom: var(--SPACING_SM);
+    position: relative;
+    z-index: 2;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.station-chipid {
+    font-size: 0.9rem;
+    opacity: 0.9;
+    font-family: 'Courier New', monospace;
+    background: rgba(255, 255, 255, 0.2);
+    padding: var(--SPACING_SM) var(--SPACING_LG);
+    border-radius: 25px;
+    display: inline-block;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    position: relative;
+    z-index: 2;
+}
+
+.station-chipid::before {
+    content: '🏷 ';
+    margin-right: var(--SPACING_XS);
+}
+
+/* Body de la estación */
+.station-body {
+    padding: var(--SPACING_LG);
+    background: linear-gradient(135deg, #ffffff, #f8f9fa);
+}
+
+/* Info sections - Estilo similar a detalle */
+.station-location {
+    background: linear-gradient(135deg, var(--COLOR_GRIS_CLARO), #f8f9fa);
+    padding: var(--SPACING_MD);
+    border-radius: var(--BORDER_RADIUS_LG);
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: var(--SPACING_MD);
+    display: flex;
+    align-items: center;
+    gap: var(--SPACING_SM);
+}
+
+.station-location::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--COLOR_ACENTO_CLIMA);
+    transition: width 0.3s ease;
+}
+
+.station-location:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    border-color: var(--COLOR_ACENTO_CLIMA);
+}
+
+.station-location:hover::before {
+    width: 100%;
+    opacity: 0.1;
+}
+
+.location-icon {
+    font-size: 1.2rem;
+    color: var(--COLOR_ACENTO_CLIMA);
+}
+
+.station-location-text {
+    font-size: 1rem;
+    color: var(--COLOR_TEXTO_PRINCIPAL);
+    font-weight: 500;
+}
+
+/* Visits - Estilo info-section */
+.station-visits {
+    background: linear-gradient(135deg, var(--COLOR_GRIS_CLARO), #f8f9fa);
+    padding: var(--SPACING_MD);
+    border-radius: var(--BORDER_RADIUS_LG);
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: var(--SPACING_MD);
+    display: flex;
+    align-items: center;
+    gap: var(--SPACING_SM);
+}
+
+.station-visits::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--COLOR_ACENTO_SECUNDARIO);
+    transition: width 0.3s ease;
+}
+
+.station-visits:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    border-color: var(--COLOR_ACENTO_SECUNDARIO);
+}
+
+.station-visits:hover::before {
+    width: 100%;
+    opacity: 0.1;
+}
+
+.visits-count {
+    font-size: 1.2rem;
+    font-weight: var(--FONT_WEIGHT_BOLD);
+    color: var(--COLOR_ACENTO_SECUNDARIO);
+}
+
+.visits-label {
+    font-size: 0.9rem;
+    color: var(--COLOR_TEXTO_SECUNDARIO);
+}
+
+.inactivo-badge {
+    background: var(--COLOR_ACENTO_ALERTA);
+    color: var(--COLOR_BLANCO);
+    padding: var(--SPACING_XS) var(--SPACING_SM);
+    border-radius: var(--BORDER_RADIUS_SM);
+    font-size: 0.8rem;
+    font-weight: var(--FONT_WEIGHT_BOLD);
+    margin-left: var(--SPACING_SM);
+}
+
+/* Status - Estilo info-section */
+.station-status {
+    background: linear-gradient(135deg, var(--COLOR_GRIS_CLARO), #f8f9fa);
+    padding: var(--SPACING_MD);
+    border-radius: var(--BORDER_RADIUS_LG);
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    gap: var(--SPACING_SM);
+}
+
+.station-status::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--COLOR_TEXTO_SECUNDARIO);
+    transition: width 0.3s ease;
+}
+
+.station-status:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    border-color: var(--COLOR_TEXTO_SECUNDARIO);
+}
+
+.station-status:hover::before {
+    width: 100%;
+    opacity: 0.1;
+}
+
+.status-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.status-dot.online {
+    background: #28a745;
+    box-shadow: 0 0 10px rgba(40, 167, 69, 0.3);
+}
+
+.status-dot.offline {
+    background: #dc3545;
+    box-shadow: 0 0 10px rgba(220, 53, 69, 0.3);
+}
+
+.status-text {
+    font-size: 0.9rem;
+    font-weight: var(--FONT_WEIGHT_BOLD);
+    color: var(--COLOR_TEXTO_SECUNDARIO);
+}
+
+/* Footer */
+.footer {
+    background: linear-gradient(135deg, var(--COLOR_FOOTER_FONDO), var(--COLOR_HEADER_FONDO));
+    color: var(--COLOR_FOOTER_TEXTO);
+    padding: var(--SPACING_XL) 0;
+    margin-top: var(--SPACING_XL);
+    border-top: 3px solid var(--COLOR_ACENTO_CLIMA);
+    position: relative;
+    overflow: hidden;
+}
+
+.footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="footerPattern" width="30" height="30" patternUnits="userSpaceOnUse"><circle cx="15" cy="15" r="1" fill="rgba(255,255,255,0.05)"/></pattern></defs><rect width="100" height="100" fill="url(%23footerPattern)"/></svg>');
+    pointer-events: none;
+}
+
+.footer .container {
+    text-align: center;
+    position: relative;
+    z-index: 2;
+}
+
+.footer p {
+    margin: 0;
+    font-size: 1rem;
+    opacity: 0.9;
+    font-weight: 500;
+}
+
+.footer p::before {
+    content: '🚀 ';
+    margin-right: var(--SPACING_XS);
+    animation: rocket 3s ease-in-out infinite;
+}
+
+@keyframes rocket {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .stations-grid {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: var(--SPACING_LG);
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: var(--SPACING_MD);
+    }
+
+    .station-nickname {
+        font-size: 1.5rem;
+    }
+
+    .station-header {
+        padding: var(--SPACING_LG);
+    }
+
+    .station-body {
+        padding: var(--SPACING_LG);
+    }
+
+    .stations-grid {
+        grid-template-columns: 1fr;
+        gap: var(--SPACING_LG);
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: var(--SPACING_SM);
+    }
+
+    .station-header,
+    .station-body {
+        padding: var(--SPACING_LG);
+    }
+
+    .station-nickname {
+        font-size: 1.3rem;
+    }
+
+    .stations-grid {
+        gap: var(--SPACING_MD);
+    }
+
+    .link-back {
+        font-size: 0.9rem;
+        margin-bottom: var(--SPACING_MD);
+        padding: var(--SPACING_SM) var(--SPACING_MD);
+    }
+
+    .station-card {
+        animation-delay: 0s !important;
+    }
+}
+
+/* Optimizaciones */
+html {
+    scroll-behavior: smooth;
+}
+
+.station-card {
+    will-change: transform, box-shadow;
+}
+
+/* Prefers reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+    .station-card {
+        border-width: 3px;
+    }
+
+    .station-header,
+    .station-location,
+    .station-visits,
+    .station-status {
+        border-width: 2px;
+    }
+}

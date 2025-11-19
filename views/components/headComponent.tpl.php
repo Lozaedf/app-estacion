@@ -3,45 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ APP_NAME }}</title>
+    <title>{{ TITLE }} - {{ APP_NAME }}</title>
+    <link rel="stylesheet" href="views/assets/css/base.css">
+    {{ CSS_SECTION_LINK }}
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        :root {
+            /* Variables de aplicación */
+            --APP_NAME: '{{ APP_NAME }}';
+            --APP_AUTHOR: '{{ APP_AUTHOR }}';
+            --APP_DESCRIPTION: '{{ APP_DESCRIPTION }}';
+            --APP_BASE_URL: '{{ APP_BASE_URL }}';
+            --API_BASE_URL: '{{ API_BASE_URL }}';
 
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: {{ COLOR_FONDO_PRINCIPAL }};
-            color: {{ COLOR_TEXTO_PRINCIPAL }};
-            min-height: 100vh;
-        }
+            /* Colores principales */
+            --COLOR_FONDO_PRINCIPAL: {{ COLOR_FONDO_PRINCIPAL }};
+            --COLOR_TEXTO_PRINCIPAL: {{ COLOR_TEXTO_PRINCIPAL }};
+            --COLOR_TEXTO_SECUNDARIO: {{ COLOR_TEXTO_SECUNDARIO }};
+            --COLOR_ACENTO_CLIMA: {{ COLOR_ACENTO_CLIMA }};
+            --COLOR_ACENTO_ALERTA: {{ COLOR_ACENTO_ALERTA }};
+            --COLOR_ACENTO_SECUNDARIO: {{ COLOR_ACENTO_SECUNDARIO }};
+            --COLOR_BOTON_PRINCIPAL_TEXTO: {{ COLOR_BOTON_PRINCIPAL_TEXTO }};
+            --COLOR_BOTON_SECUNDARIO_TEXTO: {{ COLOR_BOTON_SECUNDARIO_TEXTO }};
+            --COLOR_HEADER_FONDO: {{ COLOR_HEADER_FONDO }};
+            --COLOR_FOOTER_FONDO: {{ COLOR_FOOTER_FONDO }};
+            --COLOR_FOOTER_TEXTO: {{ COLOR_FOOTER_TEXTO }};
 
-        .header {
-            background-color: {{ COLOR_HEADER_FONDO }};
-            color: white;
-            text-align: center;
-            padding: 2rem 0;
-            margin-bottom: 3rem;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
+            /* Colores adicionales para formularios y autenticación */
+            --COLOR_BLANCO: {{ COLOR_BLANCO }};
+            --COLOR_GRIS_CLARO: {{ COLOR_GRIS_CLARO }};
+            --COLOR_GRIS_MEDIO: {{ COLOR_GRIS_MEDIO }};
+            --COLOR_BORDE_INPUT: {{ COLOR_BORDE_INPUT }};
+            --COLOR_BORDE_INPUT_FOCUS: {{ COLOR_BORDE_INPUT_FOCUS }};
+            --COLOR_FONDO_ERROR: {{ COLOR_FONDO_ERROR }};
+            --COLOR_FONDO_EXITO: {{ COLOR_FONDO_EXITO }};
+            --COLOR_SOMBRA: {{ COLOR_SOMBRA }};
 
-        .header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
-        }
+            /* Tipografía */
+            --FONT_FAMILY: {{ FONT_FAMILY }};
+            --FONT_SIZE_BASE: {{ FONT_SIZE_BASE }};
+            --FONT_WEIGHT_NORMAL: {{ FONT_WEIGHT_NORMAL }};
+            --FONT_WEIGHT_BOLD: {{ FONT_WEIGHT_BOLD }};
 
-        .header p {
-            font-size: 1.2rem;
-            opacity: 0.9;
+            /* Espaciado */
+            --SPACING_XS: {{ SPACING_XS }};
+            --SPACING_SM: {{ SPACING_SM }};
+            --SPACING_MD: {{ SPACING_MD }};
+            --SPACING_LG: {{ SPACING_LG }};
+            --SPACING_XL: {{ SPACING_XL }};
+
+            /* Bordes */
+            --BORDER_RADIUS_SM: {{ BORDER_RADIUS_SM }};
+            --BORDER_RADIUS_MD: {{ BORDER_RADIUS_MD }};
+            --BORDER_RADIUS_LG: {{ BORDER_RADIUS_LG }};
+
+            /* Transiciones */
+            --TRANSITION_FAST: {{ TRANSITION_FAST }};
+            --TRANSITION_MEDIUM: {{ TRANSITION_MEDIUM }};
         }
     </style>
 </head>
 <body>
-    <div class="header">
-        <div class="container">
-            <h1>{{ APP_NAME }}</h1>
-            <p>{{ APP_DESCRIPTION }}</p>
-        </div>
-    </div>
